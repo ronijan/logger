@@ -1,6 +1,6 @@
 {
     "name": "ronijan/logger",
-    "description": "Easy to log data in a file while developing.",
+    "description": "Easy to log data while developing.",
     "type": "package",
     "license": "MIT",
     "authors": [
@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ronijan\\Logger\\": "src/"
+            "Ronijan\\Logger\\": "src"
         }
     },
     "minimum-stability": "dev",
