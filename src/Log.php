@@ -12,9 +12,7 @@ class Log
   */
   public static function info($data)
   {
-    $data = ['aaaa' => 'ohiuhiuhihiu', 'refreg' => 'ejfio jwoefjo jo'];
-
-    $path = __DIR__ . '/../../storage/logs/';
+    $path = __DIR__ . '/../../../../storage/logs/';
 
     if (! is_dir($path)) {
       mkdir($path, 0777, true);
