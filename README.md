@@ -1,3 +1,3 @@
 ### Logger
 
-install `composer require ronijan/logger`
+Composer install $ `composer require ronijan/logger`
