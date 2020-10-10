@@ -1,26 +1,26 @@
 {
-    "name": "ronijan/logger",
-    "description": "Easy to log data while developing.",
-    "type": "package",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Huseyin Khalil",
-            "email": "huseyinkhalil@web.de"
-        }
-    ],
-    "require": {
-        "php": "^7.2.5"
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "sort-packages": true
-    },
-    "autoload": {
-        "psr-4": {
-            "Ronijan\\Logger\\": "src"
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "ronijan/logger",
+  "description": "Easy to log data while developing.",
+  "type": "package",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Huseyin Khalil",
+      "email": "huseyinkhalil@web.de"
+    }
+  ],
+  "require": {
+    "php": "^7.3"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Ronijan\\Logger\\": "src"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
