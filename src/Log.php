@@ -16,10 +16,7 @@ class Log
     public function info($data): void
     {
         $file = 'Info-' . date('m.Y') . '-' . md5(date("m")) . '.log';
-
-        if (!is_file($file)) {
-            file_put_contents($file, '');
-        }
+        $this->createFile($file);
 
         $date = date('d.m.Y h:i:s');
         $log = '# ' . $date . "\t" . print_r($data, true) . "\n";
@@ -29,10 +26,7 @@ class Log
     public function debug($data): void
     {
         $file = 'Debug-' . date('m.Y') . '-' . md5(date("m")) . '.log';
-
-        if (!is_file($file)) {
-            file_put_contents($file, '');
-        }
+        $this->createFile($file);
 
         $date = date('d.m.Y h:i:s');
         $log = '# ' . $date . "\t" . print_r($data, true) . "\n";
@@ -42,10 +36,7 @@ class Log
     public function emergency($data): void
     {
         $file = 'Emergency-' . date('m.Y') . '-' . md5(date("m")) . '.log';
-
-        if (!is_file($file)) {
-            file_put_contents($file, '');
-        }
+        $this->createFile($file);
 
         $date = date('d.m.Y h:i:s');
         $log = '# ' . $date . "\t" . print_r($data, true) . "\n";
@@ -58,11 +49,19 @@ class Log
                 true) && !is_dir($concurrentDirectory)) {
             throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
         }
-        
+
         $file = self::DIR . '.gitignore';
+        $this->createFile($file);
 
         if (!is_file($file)) {
             file_put_contents($file, '*.log');
+        }
+    }
+
+    private function createFile(string $file): void
+    {
+        if (!is_file($file)) {
+            file_put_contents($file, '');
         }
     }
 }
