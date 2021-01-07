@@ -2,26 +2,67 @@
 
 namespace Ronijan\Logger;
 
-use DateTime;
+use RuntimeException;
 
 class Log
 {
-    public static function info($data): void
+    public const DIR = __DIR__ . '/../../storage/logs/';
+
+    public function __construct()
     {
-        $dateTime = new DateTime();
-        $path = __DIR__ . '/../../../../storage/logs/';
+        $this->gitignore();
+    }
 
-        if (!mkdir($path, 0777, true) && !is_dir($path)) {
-            throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
+    public function info($data): void
+    {
+        $file = 'Info-' . date('m.Y') . '-' . md5(date("m")) . '.log';
+
+        if (!is_file($file)) {
+            file_put_contents($file, '');
         }
 
-        $formatData = '# ' . $dateTime->format('Y-m-d H:i:s') . " \t " . serialize($data) . "\r\n";
-        $file = $path . 'Log-' . date('m-d-yy') . '-' . md5(date("d")) . '.log';
+        $date = date('d.m.Y h:i:s');
+        $log = '# ' . $date . "\t" . print_r($data, true) . "\n";
+        error_log($log, 3, self::DIR . $file);
+    }
 
-        if (!file_put_contents($file, $formatData, FILE_APPEND | LOCK_EX)) {
-            die('Failed to create Log file.');
+    public function debug($data): void
+    {
+        $file = 'Debug-' . date('m.Y') . '-' . md5(date("m")) . '.log';
+
+        if (!is_file($file)) {
+            file_put_contents($file, '');
         }
 
-        file_put_contents($path . '.gitignore', '*.log');
+        $date = date('d.m.Y h:i:s');
+        $log = '# ' . $date . "\t" . print_r($data, true) . "\n";
+        error_log($log, 3, self::DIR . $file);
+    }
+
+    public function emergency($data): void
+    {
+        $file = 'Emergency-' . date('m.Y') . '-' . md5(date("m")) . '.log';
+
+        if (!is_file($file)) {
+            file_put_contents($file, '');
+        }
+
+        $date = date('d.m.Y h:i:s');
+        $log = '# ' . $date . "\t" . print_r($data, true) . "\n";
+        error_log($log, 3, self::DIR . $file);
+    }
+
+    private function gitignore(): void
+    {
+        if (!file_exists(self::DIR) && !mkdir($concurrentDirectory = self::DIR, 0777,
+                true) && !is_dir($concurrentDirectory)) {
+            throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        }
+        
+        $file = self::DIR . '.gitignore';
+
+        if (!is_file($file)) {
+            file_put_contents($file, '*.log');
+        }
     }
 }
