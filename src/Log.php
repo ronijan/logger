@@ -11,7 +11,7 @@ class Log
     public static function info($data): void
     {
         self::makeDir();
-        $file = 'Info-' . date('m.Y') . '-' . md5(date("m")) . '.log';
+        $file = self::DIR . 'Info-' . date('m.Y') . '-' . md5(date("m")) . '.log';
 
         if (!is_file($file)) {
             file_put_contents($file, '');
@@ -22,10 +22,10 @@ class Log
         error_log($log, 3, self::DIR . $file);
     }
 
-    public static function debug($data): void
+    public static function debug(...$data): void
     {
         self::makeDir();
-        $file = 'Debug-' . date('m.Y') . '-' . md5(date("m")) . '.log';
+        $file = self::DIR . 'Debug-' . date('m.Y') . '-' . md5(date("m")) . '.log';
 
         if (!is_file($file)) {
             file_put_contents($file, '');
@@ -39,7 +39,7 @@ class Log
     public static function emergency($data): void
     {
         self::makeDir();
-        $file = 'Emergency-' . date('m.Y') . '-' . md5(date("m")) . '.log';
+        $file = self::DIR . 'Emergency-' . date('m.Y') . '-' . md5(date("m")) . '.log';
 
         if (!is_file($file)) {
             file_put_contents($file, '');
@@ -54,7 +54,7 @@ class Log
     {
         if (!file_exists(self::DIR) && !mkdir($concurrentDirectory = self::DIR, 0777,
                 true) && !is_dir($concurrentDirectory)) {
-            throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+            throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
         }
 
         $file = self::DIR . '.gitignore';

@@ -5,12 +5,12 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Huseyin Khalil",
-      "email": "huseyinkhalil@web.de"
+      "name": "Ronijan Khalil",
+      "email": "7ussein.5alil@gmail.com"
     }
   ],
   "require": {
-    "php": "^7.3"
+    "php": "^7.4"
   },
   "config": {
     "optimize-autoloader": true,
