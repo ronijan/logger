@@ -5,12 +5,13 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Ronijan Khalil",
-      "email": "7ussein.5alil@gmail.com"
+      "name": "Huseyin Khalil",
+      "email": "huseyinkhalil@web.de"
     }
   ],
   "require": {
-    "php": "^7.4"
+    "php": "^7.3|^8.0",
+    "ext-json": "*"
   },
   "config": {
     "optimize-autoloader": true,
